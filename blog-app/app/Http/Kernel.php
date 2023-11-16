@@ -45,9 +45,7 @@ class Kernel extends HttpKernel
         ],
     ];
 
-    protected $routeMiddleware = [
-        'admin' => 'App\Http\Middleware\Admin\AdminMiddleware',
-    ];
+    
     /**
      * The application's middleware aliases.
      *
@@ -67,5 +65,6 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'admin' => \App\Http\Middleware\Admin\AdminMiddleware::class,
     ];
 }

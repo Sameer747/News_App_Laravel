@@ -16,7 +16,7 @@ class Admin extends Authenticatable
     */
     protected $table = "admin";
     /**
-     * guard is used to for middleware and auth purposes
+     * guard is used for middleware and auth purposes
     */
     protected $guard ='admin';
     /**
