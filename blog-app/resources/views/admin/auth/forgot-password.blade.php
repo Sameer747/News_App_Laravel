@@ -45,18 +45,24 @@
 
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h4>Login</h4>
+                                <h4>Forgot Password</h4>
                             </div>
 
                             <div class="card-body">
-                                <form method="POST" action="{{ route('admin.postLogin') }}" class="needs-validation"
-                                    novalidate="">
+                                <form method="POST" action="{{ route('admin.forgot-password.send') }}"
+                                    class="needs-validation" novalidate="">
                                     @csrf
-
+                                    <div class="mb-4 text-sm text-gray-600">
+                                        {{ __('Forgot your password? No problem. Just let us know your email address and we will send a reset link.') }}
+                                    </div>
+                                    @if (session()->has('success'))
+                                        <b style="color: green">{{ session()->get('success') }}</b>
+                                    @endif
+                                    {{-- email --}}
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email"
-                                            tabindex="1" required autofocus>
+                                        <input placeholder="Enter your email here." id="email" type="email"
+                                            class="form-control" name="email" tabindex="1" required autofocus>
                                         @error('email')
                                             <code> {{ $message }} </code>
                                         @enderror
@@ -64,12 +70,12 @@
                                             Please fill in your email
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
+                                    {{-- forgot password --}}
+                                    {{-- <div class="form-group">
                                         <div class="d-block">
                                             <label for="password" class="control-label">Password</label>
                                             <div class="float-right">
-                                                <a href="{{route('admin.forgot-password')}}" class="text-small">
+                                                <a href="auth-forgot-password.html" class="text-small">
                                                     Forgot Password?
                                                 </a>
                                             </div>
@@ -79,19 +85,19 @@
                                         <div class="invalid-feedback">
                                             please fill in your password
                                         </div>
-                                    </div>
-
-                                    <div class="form-group">
+                                    </div> --}}
+                                    {{-- remember me --}}
+                                    {{-- <div class="form-group">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" name="remember" class="custom-control-input"
                                                 tabindex="3" id="remember-me">
                                             <label class="custom-control-label" for="remember-me">Remember Me</label>
                                         </div>
-                                    </div>
-
+                                    </div> --}}
+                                    {{-- login button --}}
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                            Login
+                                            Send
                                         </button>
                                     </div>
                                 </form>

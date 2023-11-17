@@ -5,9 +5,19 @@ use Illuminate\Support\Facades\Route;
 
 // create a route group with prefix and name
 Route::group(["prefix" => "/admin", 'as' => 'admin.'], function () {
+    /**
+     * Basic login, logout routes
+     */
     Route::get('login', [AdminAuthenticationController::class, 'login'])->name('login');
     Route::post('login', [AdminAuthenticationController::class, 'postLogin'])->name('postLogin');
     Route::post('logout', [AdminAuthenticationController::class, 'logout'])->name('logout');
+    /**
+     *  Reset password routes
+     */
+    Route::get('forgot-password', [AdminAuthenticationController::class, 'forgotPassword'])->name('forgot-password');
+    Route::post('forgot-password', [AdminAuthenticationController::class, 'postForgotPassword'])->name('forgot-password.send');
+    Route::get('reset-password/{token}', [AdminAuthenticationController::class, 'resetPassword'])->name('reset-password');
+
 });
 
 Route::group(["prefix" => "/admin", 'as' => 'admin.', 'middleware' => ['admin']], function () {

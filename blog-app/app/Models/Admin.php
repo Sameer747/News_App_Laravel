@@ -14,7 +14,7 @@ class Admin extends Authenticatable
     /**
      * specify table name such that when running can get to correct db table
     */
-    protected $table = "admin";
+    protected $table = "admins";
     /**
      * guard is used for middleware and auth purposes
     */
