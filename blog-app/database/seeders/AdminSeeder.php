@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
         $admin->image = "/test";
         $admin->name = "Super User";
         $admin->email = "admin@mailinator.com";
-        $admin->password = "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi";
+        $admin->password = bcrypt("password");
         $admin->status= 1;
         $admin->save();
     }

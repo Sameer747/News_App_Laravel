@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Mail\AdminSendResetLink;
+use App\Models\Admin;
 use Illuminate\Foundation\Http\FormRequest;
+use Mail;
 
 class PasswordResetLinkRequest extends FormRequest
 {
@@ -24,5 +27,18 @@ class PasswordResetLinkRequest extends FormRequest
         return [
             "email"=> ["required","email","exists:admins,email"],
         ];
+    }
+    public function resetPasswordLink(PasswordResetLinkRequest $request){
+        // dd($request->all());
+        $token = \Str::random(64);
+        $admin = Admin::where('email', $request->email)->first();
+        $admin->forgot_token = $token;
+        $admin->save();
+        // try {
+        Mail::to($request->email)->send(new AdminSendResetLink($token, $request->email));
+        // } catch (\Exception $e) {
+        //     echo $e->getMessage();
+        //     exit;
+        // }
     }
 }

@@ -49,6 +49,9 @@
                             </div>
 
                             <div class="card-body">
+                                @if (session()->has('success'))
+                                    <b style="color: green">{{ session()->get('success') }}</b>
+                                @endif
                                 <form method="POST" action="{{ route('admin.postLogin') }}" class="needs-validation"
                                     novalidate="">
                                     @csrf
@@ -69,7 +72,7 @@
                                         <div class="d-block">
                                             <label for="password" class="control-label">Password</label>
                                             <div class="float-right">
-                                                <a href="{{route('admin.forgot-password')}}" class="text-small">
+                                                <a href="{{ route('admin.forgot-password') }}" class="text-small">
                                                     Forgot Password?
                                                 </a>
                                             </div>

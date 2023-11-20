@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\PasswordResetLinkRequest;
+use App\Http\Requests\Admin\PostLogoutRequest;
+use App\Http\Requests\Admin\PostResetPasswordRequest;
 use App\Mail\AdminSendResetLink;
 use App\Models\Admin;
 use Illuminate\Http\RedirectResponse;
@@ -28,11 +30,9 @@ class AdminAuthenticationController extends Controller
         return redirect()->route('admin.dashboard');
     }
     // post logout request
-    public function logout(Request $request): RedirectResponse
+    public function logout(PostLogoutRequest $request)
     {
-        Auth::guard('admin')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        $request->adminLogout($request);
         return redirect()->route('admin.login');
     }
     // reset password view
@@ -43,23 +43,21 @@ class AdminAuthenticationController extends Controller
     //post reset password link
     public function postForgotPassword(PasswordResetLinkRequest $request): RedirectResponse
     {
-        // dd($request->all());
-        $token = \Str::random(64);
-        $admin = Admin::where('email', $request->email)->first();
-        $admin->remember_token = $token;
-        $admin->save();
-        // try {
-            Mail::to($request->email)->send(new AdminSendResetLink($token,$request->email));
-        // } catch (\Exception $e) {
-        //     echo $e->getMessage();
-        //     exit;
-        // }
+        $request->resetPasswordLink($request);
         return redirect()->back()->with('success', 'Email has been sent.');
     }
-    // get reset password
-    public function resetPassword($token){
+    //reset password view
+    public function resetPassword($token)
+    {
         // echo "m here";exit;
-        return view('admin.auth.reset-password');
+        return view('admin.auth.reset-password', compact('token'));
+    }
+    //reset password post
+    public function postResetPassword(PostResetPasswordRequest $request)
+    {
+        $request->checkUserandUpdatePassword($request);
+        return redirect()->route('admin.login')->with('success', 'Password reset successful!');
+
     }
 
 }

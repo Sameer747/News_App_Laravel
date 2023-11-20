@@ -39,7 +39,7 @@
                     <div
                         class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                         <div class="login-brand">
-                            <img src="{{asset('admin/assets/img/stisla-fill.svg')}}" alt="logo" width="100"
+                            <img src="{{ asset('admin/assets/img/stisla-fill.svg') }}" alt="logo" width="100"
                                 class="shadow-light rounded-circle">
                         </div>
 
@@ -49,14 +49,18 @@
                             </div>
 
                             <div class="card-body">
-                                <form method="POST" action="{{ route('admin.forgot-password') }}"
+                                <form method="POST" action="{{ route('admin.reset-password.send') }}"
                                     class="needs-validation" novalidate="">
                                     @csrf
                                     {{-- email --}}
                                     <div class="form-group">
                                         <label for="email">Email</label>
                                         <input placeholder="Enter your email here." id="email" type="email"
-                                            class="form-control" name="email" tabindex="1" value="{{ request()->email }}" required autofocus>
+                                            class="form-control" name="email" tabindex="1"
+                                            value="{{ @request()->email }}" required autofocus>
+                                        <input placeholder="Enter your email here." id="email" type="hidden"
+                                            class="form-control" name="token" tabindex="1"
+                                            value="{{ @request()->token }}" required autofocus>
                                         @error('email')
                                             <code> {{ $message }} </code>
                                         @enderror
@@ -80,7 +84,8 @@
                                     <div class="form-group">
                                         <label for="password">Confirmation Password</label>
                                         <input placeholder="Enter your password here." id="password" type="password"
-                                            class="form-control" name="password_confirmation" tabindex="1" required autofocus>
+                                            class="form-control" name="password_confirmation" tabindex="1" required
+                                            autofocus>
                                         @error('password')
                                             <code> {{ $message }} </code>
                                         @enderror
