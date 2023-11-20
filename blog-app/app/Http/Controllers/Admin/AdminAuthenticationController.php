@@ -5,15 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\PasswordResetLinkRequest;
 use App\Http\Requests\Admin\PostLogoutRequest;
 use App\Http\Requests\Admin\PostResetPasswordRequest;
-use App\Mail\AdminSendResetLink;
-use App\Models\Admin;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PostLoginRequest;
 use Illuminate\View\View;
-use Mail;
 
 class AdminAuthenticationController extends Controller
 {

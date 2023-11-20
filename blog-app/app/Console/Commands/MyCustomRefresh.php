@@ -26,12 +26,9 @@ class MyCustomRefresh extends Command
      */
     public function handle()
     {
-        Artisan::call('cache:clear');
-        Artisan::call('config:clear');
-        Artisan::call('route:clear');
-        Artisan::call('optimize');
-        $this->info('');
-        $this->info('Command run successfully');
-        $this->info('');
+        Artisan::call('cache:clear',[],$this->getOutput());
+        Artisan::call('config:clear',[],$this->getOutput());
+        Artisan::call('route:clear',[],$this->getOutput());
+        Artisan::call('optimize',[],$this->getOutput());
     }
 }
