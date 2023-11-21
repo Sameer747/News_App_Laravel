@@ -65,33 +65,56 @@
                 </div> --}}
                 <div class="col-12 col-md-6 ">
                     <div class="card">
-                        <form method="post" class="needs-validation" novalidate="">
+                        <form method="post" action="{{ route('admin.profile.update',auth()->guard('admin')->user()->id) }}"
+                            class="needs-validation" novalidate="" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
                             <div class="card-header">
                                 <h4>{{ __('Edit Profile') }}</h4>
                             </div>
                             <div class="card-body">
                                 {{-- image --}}
                                 <div class="form-group col-12">
-                                    <div id="image-preview" class="image-preview">
-                                        <label for="image-upload" id="image-label">Choose File</label>
+                                    <div id="image-preview" class="image-preview mb-1">
+                                        <label for="image-upload" id="image-label">{{ __('Choose File') }}</label>
                                         <input type="file" name="image" id="image-upload" />
                                     </div>
+                                    <div class="text-danger">
+                                        {{ __('Please attach the correct image') }}
+                                    </div>
+                                    @error('image')
+                                        <div class="invalid-feedback">
+                                            {{ __('Please attach the correct image') }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 {{-- name --}}
                                 <div class="form-group col-12">
                                     <label>{{ __('Name') }}</label>
-                                    <input type="text" class="form-control" value="{{ $user->name }}" required="">
+                                    <input type="text" class="form-control" value="{{ $user->name }}" required=""
+                                        name="name">
                                     <div class="invalid-feedback">
                                         {{ __('Please fill in the name') }}
                                     </div>
+                                    @error('name')
+                                        <div class="invalid-feedback">
+                                            {{ __('Please fill in the name') }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 {{-- email --}}
                                 <div class="form-group col-12">
                                     <label>{{ __('Email') }}</label>
-                                    <input type="email" class="form-control" value="{{ $user->email }}" required="">
+                                    <input type="email" class="form-control" value="{{ $user->email }}" required=""
+                                        name="email">
                                     <div class="invalid-feedback">
                                         {{ __('Please fill in the email') }}
                                     </div>
+                                    @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ __('Please fill in the email') }}
+                                    </div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="card-footer text-right">

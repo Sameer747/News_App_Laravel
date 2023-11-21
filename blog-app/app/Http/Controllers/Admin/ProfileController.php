@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PostProfileUpdateRequest;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -52,9 +53,9 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PostProfileUpdateRequest $request, string $id)
     {
-        //
+        dd($request->all());
     }
 
     /**
