@@ -79,7 +79,7 @@
                                         <label for="image-upload" id="image-label">{{ __('Choose File') }}</label>
                                         <input type="file" name="image" id="image-upload" />
                                     </div>
-                                    <div class="text-danger">
+                                    <div class="invalid-feedback">
                                         {{ __('Please attach the correct image') }}
                                     </div>
                                     @error('image')
