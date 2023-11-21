@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Admin\AdminAuthenticationController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // create a route group with prefix and name
@@ -22,5 +23,9 @@ Route::group(["prefix" => "/admin", 'as' => 'admin.'], function () {
 });
 
 Route::group(["prefix" => "/admin", 'as' => 'admin.', 'middleware' => ['admin']], function () {
+    //dashboard routes
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // profile routes
+    Route::resource('profile', ProfileController::class);
+
 });

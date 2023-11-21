@@ -13,7 +13,7 @@
             {{-- Dashboard --}}
             <li class="menu-header">{{ __('Dashboard') }}</li>
             <li class="dropdown active">
-                <a href="#" class="nav-link "><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                <a href="{{route('admin.dashboard')}}" class="nav-link "><i class="fas fa-fire"></i><span>{{__('Dashboard')}}</span></a>
                 {{-- <ul class="dropdown-menu">
                     <li class=active><a class="nav-link" href="index-0.html">General Dashboard</a></li>
                     <li><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>
