@@ -39,7 +39,7 @@ class AdminAuthenticationController extends Controller
     public function postForgotPassword(PasswordResetLinkRequest $request): RedirectResponse
     {
         $request->resetPasswordLink($request);
-        return redirect()->back()->with('success', 'Email has been sent.');
+        return redirect()->back()->with('success', __('Email has been sent.'));
     }
     //reset password view
     public function resetPassword($token)
@@ -51,7 +51,7 @@ class AdminAuthenticationController extends Controller
     public function postResetPassword(PostResetPasswordRequest $request)
     {
         $request->checkUserandUpdatePassword($request);
-        return redirect()->route('admin.login')->with('success', 'Password reset successful!');
+        return redirect()->route('admin.login')->with('success', __('Password reset successful!'));
 
     }
 

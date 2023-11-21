@@ -104,9 +104,7 @@
 
                             </div>
                         </div>
-                        <div class="simple-footer">
-                            Copyright &copy; S-tech <?php echo date('Y'); ?>
-                        </div>
+                        @include('admin.auth.simple-footer')
                     </div>
                 </div>
             </div>

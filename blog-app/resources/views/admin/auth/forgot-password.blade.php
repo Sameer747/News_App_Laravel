@@ -45,7 +45,7 @@
 
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h4>Forgot Password</h4>
+                                <h4>{{ __('Forgot Password') }}</h4>
                             </div>
 
                             <div class="card-body">
@@ -60,14 +60,14 @@
                                     @endif
                                     {{-- email --}}
                                     <div class="form-group">
-                                        <label for="email">Email</label>
+                                        <label for="email">{{ __('Email') }}</label>
                                         <input placeholder="Enter your email here." id="email" type="email"
                                             class="form-control" name="email" tabindex="1" required autofocus>
                                         @error('email')
                                             <code> {{ $message }} </code>
                                         @enderror
                                         <div class="invalid-feedback">
-                                            Please fill in your email
+                                            {{ __('Please fill in your email') }}
                                         </div>
                                     </div>
                                     {{-- forgot password --}}
@@ -97,7 +97,7 @@
                                     {{-- login button --}}
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                            Send
+                                            {{ __('Send') }}
                                         </button>
                                     </div>
                                 </form>
@@ -122,9 +122,7 @@
                         {{-- <div class="mt-5 text-muted text-center">
               Don't have an account? <a href="auth-register.html">Create One</a>
             </div> --}}
-                        <div class="simple-footer">
-                            Copyright &copy; S-tech <?php echo date('Y'); ?>
-                        </div>
+                        @include('admin.auth.simple-footer')
                     </div>
                 </div>
             </div>
