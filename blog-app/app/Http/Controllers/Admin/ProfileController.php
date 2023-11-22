@@ -4,18 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PostProfileUpdateRequest;
+use App\Traits\FileUploadTrait;
 use Auth;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    use FileUploadTrait;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $user = Auth::guard('admin')->user();
-        return view('admin.profile.index',compact('user'));
+        return view('admin.profile.index', compact('user'));
     }
 
     /**
@@ -55,7 +57,8 @@ class ProfileController extends Controller
      */
     public function update(PostProfileUpdateRequest $request, string $id)
     {
-        dd($request->all());
+        $imagePath = $this->handleFileUpload($request, 'image', $request->old_image);
+        dd($imagePath);
     }
 
     /**

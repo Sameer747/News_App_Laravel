@@ -78,6 +78,7 @@
                                     <div id="image-preview" class="image-preview mb-1">
                                         <label for="image-upload" id="image-label">{{ __('Choose File') }}</label>
                                         <input type="file" name="image" id="image-upload" />
+                                        <input type="hidden" name="old_image" value="{{ $user->image }}" />
                                     </div>
                                     <div class="invalid-feedback">
                                         {{ __('Please attach the correct image') }}
@@ -111,9 +112,9 @@
                                         {{ __('Please fill in the email') }}
                                     </div>
                                     @error('email')
-                                    <div class="invalid-feedback">
-                                        {{ __('Please fill in the email') }}
-                                    </div>
+                                        <div class="invalid-feedback">
+                                            {{ __('Please fill in the email') }}
+                                        </div>
                                     @enderror
                                 </div>
                             </div>
