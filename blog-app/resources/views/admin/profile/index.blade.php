@@ -72,6 +72,11 @@
                             <div class="card-header">
                                 <h4>{{ __('Edit Profile') }}</h4>
                             </div>
+                            @if (session()->has('success'))
+                                <div class="form-group col-12 ml-4">
+                                    <b name="success" style="color: green">{{ session()->get('success') }}</b>
+                                </div>
+                            @endif
                             <div class="card-body">
                                 {{-- image --}}
                                 <div class="form-group col-12">
@@ -166,3 +171,15 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.image-preview').css({
+                "background-image": "url({{ asset($user->image) }})",
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        })
+    </script>
+@endpush
