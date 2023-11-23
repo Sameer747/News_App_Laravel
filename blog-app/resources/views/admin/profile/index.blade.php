@@ -63,6 +63,7 @@
                         </div>
                     </div>
                 </div> --}}
+                {{-- Edit Profile --}}
                 <div class="col-12 col-md-6 ">
                     <div class="card">
                         <form method="post" action="{{ route('admin.profile.update',auth()->guard('admin')->user()->id) }}"
@@ -129,36 +130,52 @@
                         </form>
                     </div>
                 </div>
+                {{-- Update Password --}}
                 <div class="col-12 col-md-6 ">
                     <div class="card">
-                        <form method="post" class="needs-validation" novalidate="">
+                        <form method="POST" action="{{ route('admin.profile-password.update', $user->id) }}"
+                            class="needs-validation" novalidate="">
+                            @csrf
+                            @method('PUT')
                             <div class="card-header">
                                 <h4>{{ __('Update Password') }}</h4>
                             </div>
                             {{-- old password --}}
                             <div class="card-body">
                                 <div class="form-group col-12">
-                                    <label>{{ __('Old Password') }}</label>
-                                    <input type="text" class="form-control" value="" required="">
+                                    <label for="current_password">{{ __('Current Password') }}</label>
+                                    <input id="current_password" type="password" class="form-control" value=""
+                                        required autofocus name="current_password">
                                     <div class="invalid-feedback">
                                         {{ __('Please fill in the old password') }}
                                     </div>
+                                    @error('current_password')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 {{-- new password --}}
                                 <div class="form-group col-12">
-                                    <label>{{ __('New Password') }}</label>
-                                    <input type="email" class="form-control" value="" required="">
+                                    <label for="password">{{ __('New Password') }}</label>
+                                    <input id="password" type="password" class="form-control" required autofocus
+                                        name="password">
                                     <div class="invalid-feedback">
                                         {{ __('Please fill in the new password') }}
                                     </div>
+                                    @error('password')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 {{-- confirm password --}}
                                 <div class="form-group col-12">
                                     <label>{{ __('Confirmed Password') }}</label>
-                                    <input type="email" class="form-control" value="" required="">
+                                    <input id="confirm_password" type="password" class="form-control" required
+                                        autofocus name="confirm_password">
                                     <div class="invalid-feedback">
                                         {{ __('Please fill in the confirmed password') }}
                                     </div>
+                                    @error('confirm_password')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="card-footer text-right">

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PostProfileUpdateRequest;
+use App\Http\Requests\Admin\PostUpdatePasswordRequest;
 use Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -57,6 +59,16 @@ class ProfileController extends Controller
     {
         $request->updateProfileInfo($request, $id);
         return redirect()->back()->with('success', 'Profile Update Sucessfull!');
+    }
+
+    /**
+     * Update the specified resource for password.
+     */
+    public function passwordUpdate(PostUpdatePasswordRequest $request, string $id)
+    {
+        // dd($request->all());exit;
+        $request->updatePassword($request, $id);
+        return redirect()->back()->with('success', 'Password Update Successfull!');
     }
 
     /**
