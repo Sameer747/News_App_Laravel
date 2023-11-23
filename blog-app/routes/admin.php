@@ -26,7 +26,7 @@ Route::group(["prefix" => "/admin", 'as' => 'admin.', 'middleware' => ['admin']]
     //dashboard routes
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     // profile routes
-    Route::put('profile-password-update/{id}',[ProfileController::class,'passwordUpdate'])->name('profile-password.update');
+    Route::put('profile-password-update/{id}', [ProfileController::class, 'passwordUpdate'])->name('profile-password.update');//update password route
     Route::resource('profile', ProfileController::class);
 
 });

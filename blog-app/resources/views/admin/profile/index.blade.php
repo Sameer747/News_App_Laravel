@@ -73,11 +73,11 @@
                             <div class="card-header">
                                 <h4>{{ __('Edit Profile') }}</h4>
                             </div>
-                            @if (session()->has('success'))
+                            {{-- @if (session()->has('success'))
                                 <div class="form-group col-12 ml-4">
                                     <b name="success" style="color: green">{{ session()->get('success') }}</b>
                                 </div>
-                            @endif
+                            @endif --}}
                             <div class="card-body">
                                 {{-- image --}}
                                 <div class="form-group col-12">
@@ -168,8 +168,8 @@
                                 {{-- confirm password --}}
                                 <div class="form-group col-12">
                                     <label>{{ __('Confirmed Password') }}</label>
-                                    <input id="confirm_password" type="password" class="form-control" required
-                                        autofocus name="confirm_password">
+                                    <input id="confirm_password" type="password" class="form-control" required autofocus
+                                        name="confirm_password">
                                     <div class="invalid-feedback">
                                         {{ __('Please fill in the confirmed password') }}
                                     </div>

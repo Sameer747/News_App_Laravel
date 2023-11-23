@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PostProfileUpdateRequest;
 use App\Http\Requests\Admin\PostUpdatePasswordRequest;
 use Auth;
-use Illuminate\Support\Facades\Log;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -58,7 +58,8 @@ class ProfileController extends Controller
     public function update(PostProfileUpdateRequest $request, string $id)
     {
         $request->updateProfileInfo($request, $id);
-        return redirect()->back()->with('success', 'Profile Update Sucessfull!');
+        toast('Profile Update Successfull!','success','center-center')->width('400');
+        return redirect()->back();
     }
 
     /**
@@ -68,7 +69,8 @@ class ProfileController extends Controller
     {
         // dd($request->all());exit;
         $request->updatePassword($request, $id);
-        return redirect()->back()->with('success', 'Password Update Successfull!');
+        toast('Password Update Successfull!','success','center-center')->width('400');
+        return redirect()->back();
     }
 
     /**
