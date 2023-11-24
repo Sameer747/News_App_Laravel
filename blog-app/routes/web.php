@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('admin.dashboard.index');
 // });
 
-Route::get('/', function () {
-    return view('frontend.layouts.master');
-});
+Route::get('/', [HomeController::class,'index']);
 
 
 Route::get('/dashboard', function () {
