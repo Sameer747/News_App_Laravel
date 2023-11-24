@@ -10,7 +10,7 @@
 
             </div>
             <div class="card-body">
-                <form method="POST" action="{{route('admin.language.store')}}">
+                <form method="POST" action="{{ route('admin.language.store') }}">
                     @csrf
                     {{-- langguage --}}
                     <div class="form-group">
@@ -20,17 +20,26 @@
                             @foreach (config('language') as $key => $lang)
                                 <option value="{{ $key }}">{{ $lang['name'] }}</option>
                             @endforeach
+                            @error('lang')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </select>
                     </div>
                     {{-- Name --}}
                     <div class="form-group">
                         <label for="">Name</label>
                         <input name="name" readonly type="text" class="form-control" id="name">
+                        @error('name')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
                     {{-- slug --}}
                     <div class="form-group">
                         <label for="">Slug</label>
                         <input name="slug" readonly type="text" class="form-control" id="slug">
+                        @error('slug')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
                     {{-- default --}}
                     <div class="form-group">
@@ -39,6 +48,9 @@
                             <option value="1">Yes</option>
                             <option value="0">No</option>
                         </select>
+                        @error('default')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
                     {{-- status --}}
                     <div class="form-group">
@@ -47,6 +59,9 @@
                             <option value="1">Active</option>
                             <option value="0">Inactive</option>
                         </select>
+                        @error('status')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
                     {{-- submit btn --}}
                     <button type="submit" class="btn btn-primary">Create</button>
