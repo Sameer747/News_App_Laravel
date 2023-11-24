@@ -1,11 +1,11 @@
     @extends('frontend.layouts.master')
     @section('content')
         <!-- Tranding news  carousel-->
-        @include('frontend.home-page-components.trending-news')
+        @include('frontend.Home.home-page-components.trending-news')
         <!-- End Tranding news carousel -->
 
         <!-- Hero Slider News -->
-        @include('frontend.home-page-components.hero-slider')
+        @include('frontend.Home.home-page-components.hero-slider')
         <!-- End Hero Slider News -->
 
         {{-- Ad Banner Start --}}
@@ -23,6 +23,6 @@
         {{-- Ad Banner End --}}
 
         <!-- Popular news category -->
-        @include('frontend.home-page-components.main-news')
+        @include('frontend.Home.home-page-components.main-news')
         <!-- End Popular news category -->
     @endsection

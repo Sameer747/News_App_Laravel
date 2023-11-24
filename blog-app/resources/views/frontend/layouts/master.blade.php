@@ -15,7 +15,9 @@
     @include('frontend.layouts.header')
     <!-- End Header news -->
 
+    {{-- contents --}}
     @yield('content')
+    {{-- End contents --}}
 
     {{-- footer --}}
     @include('frontend.layouts.footer')
