@@ -31,13 +31,7 @@ class LanguageController extends Controller
     public function store(AdminLanguageStoreRequest $request)
     {
         // dd($request->all());
-        $language = new Language();
-        $language->name = $request->name;
-        $language->lang = $request->lang;
-        $language->slug = $request->slug;
-        $language->default = $request->default;
-        $language->status = $request->status;
-        $language->save();
+        $request->addLang($request);
         toast(__('Language Added Successfully!'),'success','top')->position('top')->width('400');
         return redirect()->route('admin.language.index');
     }

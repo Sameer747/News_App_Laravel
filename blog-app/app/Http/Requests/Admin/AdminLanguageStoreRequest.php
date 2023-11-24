@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\Language;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class AdminLanguageStoreRequest extends FormRequest
 {
@@ -28,5 +30,14 @@ class AdminLanguageStoreRequest extends FormRequest
             'default' => ['required', 'boolean'],
             'status' => ['required', 'boolean'],
         ];
+    }
+    public function addLang(Request $request) {
+        $language = new Language();
+        $language->name = $request->name;
+        $language->lang = $request->lang;
+        $language->slug = $request->slug;
+        $language->default = $request->default;
+        $language->status = $request->status;
+        $language->save();
     }
 }
