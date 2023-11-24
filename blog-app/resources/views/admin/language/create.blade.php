@@ -10,24 +10,32 @@
 
             </div>
             <div class="card-body">
-                <form action="">
+                <form method="POST" action="{{route('admin.language.store')}}">
+                    @csrf
                     {{-- langguage --}}
                     <div class="form-group">
                         <label for="">Language</label>
-                        <select name="" id="" class="form-control">
+                        <select name="lang" id="language-select" class="form-control select2">
                             <option value="">--Select--</option>
-                            <option value=""></option>
+                            @foreach (config('language') as $key => $lang)
+                                <option value="{{ $key }}">{{ $lang['name'] }}</option>
+                            @endforeach
                         </select>
+                    </div>
+                    {{-- Name --}}
+                    <div class="form-group">
+                        <label for="">Name</label>
+                        <input name="name" readonly type="text" class="form-control" id="name">
                     </div>
                     {{-- slug --}}
                     <div class="form-group">
                         <label for="">Slug</label>
-                        <input readonly type="text" class="form-control">
+                        <input name="slug" readonly type="text" class="form-control" id="slug">
                     </div>
                     {{-- default --}}
                     <div class="form-group">
                         <label for="">Default?</label>
-                        <select name="" id="" class="form-control">
+                        <select name="default" id="" class="form-control">
                             <option value="1">Yes</option>
                             <option value="0">No</option>
                         </select>
@@ -35,7 +43,7 @@
                     {{-- status --}}
                     <div class="form-group">
                         <label for="">Status</label>
-                        <select name="" id="" class="form-control">
+                        <select name="status" id="" class="form-control">
                             <option value="1">Active</option>
                             <option value="0">Inactive</option>
                         </select>
@@ -47,3 +55,17 @@
         </div>
     </section>
 @endsection
+
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#language-select').on('change', function() {
+                let value = $(this).val();
+                let name = $(this).children(':selected').text();
+                $('#slug').val(value);
+                $('#name').val(name);
+            })
+        })
+    </script>
+@endpush
