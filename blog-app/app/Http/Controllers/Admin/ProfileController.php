@@ -19,49 +19,15 @@ class ProfileController extends Controller
         $user = Auth::guard('admin')->user();
         return view('admin.profile.index', compact('user'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      */
     public function update(PostProfileUpdateRequest $request, string $id)
     {
         $request->updateProfileInfo($request, $id);
-        toast('Profile Update Successfull!','success','center-center')->width('400');
+        toast(__('Profile Update Successfull!'),'success','top')->position('top')->width('400');
         return redirect()->back();
     }
-
     /**
      * Update the specified resource for password.
      */
@@ -69,15 +35,7 @@ class ProfileController extends Controller
     {
         // dd($request->all());exit;
         $request->updatePassword($request, $id);
-        toast('Password Update Successfull!','success','center-center')->width('400');
+        toast(__('Password Update Successfull!'),'success','top')->position('top')->width('400');
         return redirect()->back();
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

@@ -206,15 +206,12 @@
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                 <img alt="image" src="{{ asset('admin/assets/img/avatar/avatar-1.png') }}"
                     class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">{{ __('Hi, Sameer Mohsin') }}</div>
+                <div class="d-sm-none d-lg-inline-block">{{ __('Hi,') }} {{ auth()->guard('admin')->user()->name }}
+                </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">{{ __('Logged in 5 min ago') }}</div>
-                <a href="{{route('admin.profile.index')}}" class="dropdown-item has-icon">
+                <a href="{{ route('admin.profile.index') }}" class="dropdown-item has-icon">
                     <i class="far fa-user"></i> {{ __('Profile') }}
-                </a>
-                <a href="features-activities.html" class="dropdown-item has-icon">
-                    <i class="fas fa-bolt"></i> {{ __('Activities') }}
                 </a>
                 <a href="features-settings.html" class="dropdown-item has-icon">
                     <i class="fas fa-cog"></i> {{ __('Settings') }}
