@@ -70,6 +70,15 @@ class LanguageController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $language = Language::findOrFail($id);
+            if ($language->lang === 'en') {
+                return response(['status' => 'error', 'message' => __('Can\'t delete the default language!')]);
+            }
+            $language->delete();
+            return response(['status' => 'success', 'message' => __('Deleted Successfully')]);
+        } catch (\Throwable $th) {
+            return response(['status' => 'success', 'message' => __('Something went wrong!')]);
+        }
     }
 }
