@@ -47,10 +47,10 @@
                     </div>
                     {{-- default --}}
                     <div class="form-group">
-                        <label for="">Default?</label>
+                        <label for="">{{__('Default?')}}</label>
                         <select name="default" id="" class="form-control">
-                            <option {{$language->default === 1 ? 'selected' : ''}} value="1">Yes</option>
-                            <option {{$language->default === 0 ? 'selected' : ''}} value="0">No</option>
+                            <option {{ $language->default === 1 ? 'selected' : '' }} value="1">Yes</option>
+                            <option {{ $language->default === 0 ? 'selected' : '' }} value="0">No</option>
                         </select>
                         @error('default')
                             <p class="text-danger">{{ $message }}</p>
@@ -60,15 +60,15 @@
                     <div class="form-group">
                         <label for="">Status</label>
                         <select name="status" id="" class="form-control">
-                            <option {{$language->status === 1 ? 'selected' : ''}} value="1">Active</option>
-                            <option {{$language->status === 0 ? 'selected' : ''}} value="0">Inactive</option>
+                            <option {{ $language->status === 1 ? 'selected' : '' }} value="1">Active</option>
+                            <option {{ $language->status === 0 ? 'selected' : '' }} value="0">Inactive</option>
                         </select>
                         @error('status')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     {{-- submit btn --}}
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
                 </form>
             </div>
         </div>

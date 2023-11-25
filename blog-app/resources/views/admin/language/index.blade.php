@@ -19,7 +19,7 @@
                         <thead>
                             <tr>
                                 <th>
-                                    #
+                                    {{ __('#') }}
                                 </th>
                                 <th>{{ __('Language Name') }}</th>
                                 <th>{{ __('Language Code') }}</th>
