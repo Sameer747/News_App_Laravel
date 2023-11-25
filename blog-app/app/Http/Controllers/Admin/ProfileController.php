@@ -25,7 +25,7 @@ class ProfileController extends Controller
     public function update(PostProfileUpdateRequest $request, string $id)
     {
         $request->updateProfileInfo($request, $id);
-        toast(__('Profile Update Successfull!'),'success','top')->position('top')->width('400');
+        toast(__('Profile Updated Successfully!'), 'success')->position('top-end')->width('400');
         return redirect()->back();
     }
     /**
@@ -35,7 +35,7 @@ class ProfileController extends Controller
     {
         // dd($request->all());exit;
         $request->updatePassword($request, $id);
-        toast(__('Password Update Successfull!'),'success','top')->position('top')->width('400');
+        toast(__('Password Updated Successfully!'), 'success')->position('top-end')->width('400');
         return redirect()->back();
     }
 }

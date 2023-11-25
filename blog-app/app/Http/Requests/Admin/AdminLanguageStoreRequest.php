@@ -25,13 +25,14 @@ class AdminLanguageStoreRequest extends FormRequest
     {
         return [
             'lang' => ['required', 'max:255', 'unique:languages,lang'],
-            'name' => ['required', 'max:255'],
-            'slug' => ['required', 'max:255', 'unique:languages,lang'],
+            'name' => ['required', 'max:255', 'unique:languages,name'],
+            'slug' => ['required', 'max:255', 'unique:languages,slug'],
             'default' => ['required', 'boolean'],
             'status' => ['required', 'boolean'],
         ];
     }
-    public function addLang(Request $request) {
+    public function addLang(Request $request)
+    {
         $language = new Language();
         $language->name = $request->name;
         $language->lang = $request->lang;

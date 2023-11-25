@@ -20,10 +20,10 @@
                             @foreach (config('language') as $key => $lang)
                                 <option value="{{ $key }}">{{ $lang['name'] }}</option>
                             @endforeach
-                            @error('lang')
-                                <p class="text-danger">{{ $message }}</p>
-                            @enderror
                         </select>
+                        @error('lang')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
                     {{-- Name --}}
                     <div class="form-group">
