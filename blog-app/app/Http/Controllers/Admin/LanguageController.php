@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminLanguageStoreRequest;
+use App\Http\Requests\Admin\AdminLanguageUpdateRequest;
 use App\Models\Language;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,7 @@ class LanguageController extends Controller
     public function store(AdminLanguageStoreRequest $request)
     {
         // dd($request->all());
-        $request->addLang($request);
+        $request->createLang($request);
         toast(__('Language Added Successfully!'), 'success', 'top')->position('top-end')->width('400');
         return redirect()->route('admin.language.index');
     }
@@ -50,15 +51,18 @@ class LanguageController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $language = Language::findOrFail($id);
+        return view('admin.language.edit', compact('language'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AdminLanguageUpdateRequest $request, string $id)
     {
-        //
+        $request->updateLang($request, $id);
+        toast(__('Language Updated Successfully!'), 'success', 'top')->position('top-end')->width('400');
+        return redirect()->route('admin.language.index');
     }
 
     /**

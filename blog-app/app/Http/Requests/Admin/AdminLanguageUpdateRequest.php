@@ -6,7 +6,7 @@ use App\Models\Language;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
-class AdminLanguageStoreRequest extends FormRequest
+class AdminLanguageUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,17 +23,18 @@ class AdminLanguageStoreRequest extends FormRequest
      */
     public function rules(): array
     {
+        $langId = $this->route('language');
         return [
-            'lang' => ['required', 'max:255', 'unique:languages,lang'],
-            'name' => ['required', 'max:255', 'unique:languages,name'],
-            'slug' => ['required', 'max:255', 'unique:languages,slug'],
+            'lang' => ['required', 'max:255', 'unique:languages,lang,' . $langId],
+            'name' => ['required', 'max:255', 'unique:languages,name,' . $langId],
+            'slug' => ['required', 'max:255', 'unique:languages,slug,' . $langId],
             'default' => ['required', 'boolean'],
             'status' => ['required', 'boolean'],
         ];
     }
-    public function createLang(Request $request)
+    public function updateLang(Request $request, string $id)
     {
-        $language = new Language();
+        $language = Language::findOrFail($id);
         $language->name = $request->name;
         $language->lang = $request->lang;
         $language->slug = $request->slug;
