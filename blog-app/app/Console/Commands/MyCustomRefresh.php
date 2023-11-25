@@ -12,7 +12,7 @@ class MyCustomRefresh extends Command
      *
      * @var string
      */
-    protected $signature = 'app:custom-refresh';
+    protected $signature = 'app:c-r';
 
     /**
      * The console command description.
@@ -26,9 +26,9 @@ class MyCustomRefresh extends Command
      */
     public function handle()
     {
-        Artisan::call('cache:clear',[],$this->getOutput());
-        Artisan::call('config:clear',[],$this->getOutput());
-        Artisan::call('route:clear',[],$this->getOutput());
-        Artisan::call('optimize',[],$this->getOutput());
+        Artisan::call('cache:clear', [], $this->getOutput());
+        Artisan::call('config:clear', [], $this->getOutput());
+        Artisan::call('route:clear', [], $this->getOutput());
+        Artisan::call('optimize', [], $this->getOutput());
     }
 }
