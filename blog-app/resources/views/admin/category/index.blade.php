@@ -26,7 +26,7 @@
                 <div class="tab-content tab-bordered" id="myTab3Content">
                     @foreach ($languages as $lang)
                         @php
-                            $categories = \App\Models\Category::where('language', $lang->lang)->get();
+                            $categories = \App\Models\Category::where('language', $lang->lang)->OrderByDesc('id')->get();
                         @endphp
                         <div class="tab-pane fade show {{ $loop->index === 0 ? 'active' : '' }}"
                             id="home-{{ $lang->lang }}" role="tabpanel" aria-labelledby="home-tab2">
