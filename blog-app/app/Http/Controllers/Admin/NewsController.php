@@ -14,7 +14,7 @@ class NewsController extends Controller
     public function index()
     {
         $languages = Language::all();
-        return view('admin.category.index', compact('languages'));
+        return view('admin.news.index', compact('languages'));
     }
 
     /**
@@ -22,7 +22,8 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        $languages = Language::all();
+        return view('admin.news.create', compact('languages'));
     }
 
     /**
@@ -30,7 +31,7 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

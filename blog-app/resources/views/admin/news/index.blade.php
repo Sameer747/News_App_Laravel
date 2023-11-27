@@ -6,7 +6,7 @@
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('All Newss') }}</h4>
+                <h4>{{ __('All News') }}</h4>
                 <div class="card-header-action">
                     <a href="{{ route('admin.news.create') }}" class="btn btn-primary">
                         <i class="fas fa-plus"></i> {{ __('Create New') }}
@@ -26,8 +26,8 @@
                 <div class="tab-content tab-bordered" id="myTab3Content">
                     @foreach ($languages as $lang)
                         @php
-                            $categories = \App\Models\Category::where('language', $language->lang)
-                                ->orderByDesc('id')
+                            $categories = \App\Models\Category::where('language', $lang->lang)
+                                ->OrderByDesc('id')
                                 ->get();
                         @endphp
                         <div class="tab-pane fade show {{ $loop->index === 0 ? 'active' : '' }}"
@@ -74,9 +74,9 @@
                                                     </td>
 
                                                     <td>
-                                                        <a href="{{ route('admin.news.edit', $category->id) }}"
+                                                        <a href="{{ route('admin.category.edit', $category->id) }}"
                                                             class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                                        <a href="{{ route('admin.news.destroy', $category->id) }}"
+                                                        <a href="{{ route('admin.category.destroy', $category->id) }}"
                                                             class="btn btn-danger delete-item"><i
                                                                 class="fas fa-trash-alt"></i></a>
                                                     </td>
