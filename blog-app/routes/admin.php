@@ -3,6 +3,7 @@ use App\Http\Controllers\Admin\AdminAuthenticationController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LanguageController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,11 +29,13 @@ Route::group(["prefix" => "/admin", 'as' => 'admin.', 'middleware' => ['admin']]
     //dashboard routes
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     // profile routes
-    Route::put('profile-password-update/{id}', [ProfileController::class, 'passwordUpdate'])->name('profile-password.update');//update password route
+    Route::put('profile-password-update/{id}', [ProfileController::class, 'passwordUpdate'])->name('profile-password.update'); //update password route
     Route::resource('profile', ProfileController::class);
     // languages route
-    Route::resource('language',LanguageController::class);
+    Route::resource('language', LanguageController::class);
     // category route
-    Route::resource('category',CategoryController::class);
+    Route::resource('category', CategoryController::class);
+    // news route
+    Route::resource('news', NewsController::class);
 
 });

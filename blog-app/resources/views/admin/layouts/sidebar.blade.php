@@ -21,9 +21,20 @@
             {{-- Categories --}}
             <li><a class="nav-link" href="{{ route('admin.category.index') }}"><i class="far fa-square"></i>
                     <span>{{ __('Categories') }}</span></a></li>
+            {{-- News --}}
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i>
+                    <span>{{ __('News') }}</span></a>
+                <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="{{route('admin.news.index')}}">{{ __('All News') }}</a></li>
+                    <li><a class="nav-link" href="forms-editor.html">{{ __('Editor') }}</a></li>
+                    <li><a class="nav-link" href="forms-validation.html">{{ __('Validate') }}</a></li>
+                </ul>
+            </li>
             {{-- Languages --}}
             <li><a class="nav-link" href="{{ route('admin.language.index') }}"><i class="far fa-square"></i>
                     <span>{{ __('Languages') }}</span></a></li>
+
             {{-- <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i>
                     <span>{{ __('Blank Page') }}</span></a></li> --}}
             {{-- <li class="dropdown">
