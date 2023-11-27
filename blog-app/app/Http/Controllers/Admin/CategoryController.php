@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminCategoryStoreRequest;
+use App\Http\Requests\Admin\AdminCategoryUpdateRequest;
 use App\Models\Category;
 use App\Models\Language;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        // $categories = Category::where('language')->get();
         $languages = Language::all();
         return view('admin.category.index', compact('languages'));
 
@@ -34,13 +36,7 @@ class CategoryController extends Controller
      */
     public function store(AdminCategoryStoreRequest $request)
     {
-        $category = new Category();
-        $category->name = $request->name;
-        $category->slug = \Str::slug($request->name);
-        $category->language = $request->lang;
-        $category->show_at_nav = $request->show_at_nav;
-        $category->status = $request->status;
-        $category->save();
+        $request->StoreCategory($request);
         toast(__('Category Added Successfully!'), 'success', 'top')->position('top-end')->width('400');
         return redirect()->route('admin.category.index');
     }
@@ -50,7 +46,7 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
@@ -58,15 +54,19 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $languages = Language::all();
+        $category = Category::findOrFail($id);
+        return view('admin.category.edit', compact('languages', 'category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AdminCategoryUpdateRequest $request, string $id)
     {
-        //
+        $request->UpdateCategory($request, $id);
+        toast(__('Category Updated Successfully!'), 'success', 'top')->position('top-end')->width('400');
+        return redirect()->route('admin.category.index');
     }
 
     /**
