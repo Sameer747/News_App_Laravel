@@ -18,6 +18,10 @@
             </li>
             {{-- Starter --}}
             <li class="menu-header">{{ __('Starter') }}</li>
+            {{-- Categories --}}
+            <li><a class="nav-link" href="{{ route('admin.category.index') }}"><i class="far fa-square"></i>
+                    <span>{{ __('Categories') }}</span></a></li>
+            {{-- Languages --}}
             <li><a class="nav-link" href="{{ route('admin.language.index') }}"><i class="far fa-square"></i>
                     <span>{{ __('Languages') }}</span></a></li>
             {{-- <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i>
