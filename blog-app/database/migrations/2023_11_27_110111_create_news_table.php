@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,6 +12,19 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
+            $table->string('language');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('admins');
+            $table->text('image');
+            $table->string('title');
+            $table->text('slug');
+            $table->text('content');
+            $table->string('meta_title');
+            $table->string('meta_description');
+            $table->boolean('is_breaking_news')->default(0);
+            $table->boolean('show_at_slider')->default(0);
+            $table->boolean('show_at_popular')->default(0);
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
