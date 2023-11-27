@@ -2,49 +2,41 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('Language') }}</h1>
+            <h1>{{ __('Category') }}</h1>
         </div>
         <div class="card card-primary">
             <div class="card-header">
-                <h4>{{ __('Create Language') }}</h4>
+                <h4>{{ __('Create Category') }}</h4>
 
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ route('admin.language.store') }}">
+                <form method="POST" action="{{ route('admin.category.store') }}">
                     @csrf
                     {{-- langguage --}}
                     <div class="form-group">
                         <label for="">{{ __('Language') }}</label>
-                        <select name="lang" id="language-select" class="form-control select2">
+                        <select name="language" id="language-select" class="form-control select2">
                             <option value="">{{ __('--Select--') }}</option>
-                            @foreach (config('language') as $key => $lang)
-                                <option value="{{ $key }}">{{ $lang['name'] }}</option>
+                            @foreach ($languages as $lang)
+                                <option value="{{ $lang->lang }}">{{ $lang->name }}</option>
                             @endforeach
                         </select>
-                        @error('lang')
+                        @error('language')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     {{-- Name --}}
                     <div class="form-group">
                         <label for="">{{ __('Name') }}</label>
-                        <input name="name" readonly type="text" class="form-control" id="name">
+                        <input name="name" type="text" class="form-control" id="name">
                         @error('name')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
-                    {{-- slug --}}
+                    {{-- show at nav --}}
                     <div class="form-group">
-                        <label for="">{{ __('Slug') }}</label>
-                        <input name="slug" readonly type="text" class="form-control" id="slug">
-                        @error('slug')
-                            <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    {{-- default --}}
-                    <div class="form-group">
-                        <label for="">{{ __('Default?') }}</label>
-                        <select name="default" id="" class="form-control">
+                        <label for="">{{ __('Show at Nav?') }}</label>
+                        <select name="show_at_nav" id="" class="form-control">
                             <option value="1">{{ __('Yes') }}</option>
                             <option value="0">{{ __('No') }}</option>
                         </select>
@@ -72,15 +64,3 @@
 @endsection
 
 
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('#language-select').on('change', function() {
-                let value = $(this).val();
-                let name = $(this).children(':selected').text();
-                $('#slug').val(value);
-                $('#name').val(name);
-            })
-        })
-    </script>
-@endpush

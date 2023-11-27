@@ -78,7 +78,7 @@ class LanguageController extends Controller
             $language->delete();
             return response(['status' => 'success', 'message' => __('Deleted Successfully')]);
         } catch (\Throwable $th) {
-            return response(['status' => 'success', 'message' => __('Something went wrong!')]);
+            return response(['status' => 'error', 'message' => __('Something went wrong!')]);
         }
     }
 }
